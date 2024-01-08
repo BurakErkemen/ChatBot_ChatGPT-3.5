@@ -1,5 +1,8 @@
 import streamlit as st
 import openai 
+import Selenium_VeriCekme as cek
+import os
+import pandas as pd
 
 st.title("Fırat BOT")
 
@@ -17,12 +20,25 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 prompt = st.chat_input("What is up?")
-prompt1 = """If you are given an entry with "bihter das" in it, you can use the text {Bihter das is a faculty member at the university of fırat. She continues her studies in the fields of artificial intelligence and molecular biology.} text."""
+prompt1 = """If you are given an entry with the word "Announcements" in it, you can look in the [duyurular_dataset.csv](link_to_duyurular_dataset) file and answer that {no such information has been released recently} if the information asked for is not there.
+If you are given the name of an official from the [akademik_dataset.csv](link_to_akademik_dataset) database, you can give his/her fields of study and title information.
+If you are asked a question about a field in the [akademik_dataset.csv](link_to_akademik_dataset) database, you can let them know that you can get help about the lecturer who deals with it."""
+
+prompt3 = """
+Given the dataset about announcements (duyuru_dataset.csv), you can find information about recent announcements. 
+If there is no information available in the dataset, you can respond with "{no such information has been released recently}".
+
+When it comes to academic information, you can refer to the academic dataset (akademik_dataset.csv). 
+If you are provided with the name of an official from the academic dataset, you can retrieve their fields of study and title information.
+
+If you are asked a question related to a specific field in the academic dataset, you can let the user know that you can provide assistance regarding the lecturer who specializes in that field.
+"""
+
 if prompt:
     with st.chat_message("user"):
         st.markdown(prompt)
     
-    st.session_state.messages.append({"role":"user","content":prompt1})
+    st.session_state.messages.append({"role":"user","content":prompt3})
     st.session_state.messages.append({"role":"user","content":prompt})
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
@@ -41,3 +57,4 @@ if prompt:
             message_placeholder.markdown(full_response + "|")
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant","content":full_response})
+
