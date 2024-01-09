@@ -86,7 +86,7 @@ for i in range(18):
         'mail': Mail,
         'calısmalanları': CalısmaAlan
     }
-    dizi_akademik.append(item)
+    dizi_duyuru.append(item)
 
 sleep(3)
 
@@ -96,9 +96,10 @@ browser.quit()
 
 duyuru_dataset = pd.DataFrame({"Veriler_Duyurular": dizi_duyuru})
 #print(duyuru_dataset)
-akademik_dataset = pd.DataFrame({"Veriler_Akademik": dizi_akademik})
+#akademik_dataset = pd.DataFrame({"Veriler_Akademik": dizi_akademik})
 #print(akademik_dataset)
 
 
-duyuru_dataset.to_csv("duyuru_dataset.csv", index=False)
-akademik_dataset.to_csv("akademik_dataset.csv", index=False)
+duyuru_dataset.to_csv("datasets.csv", index=False)
+#akademik_dataset.to_csv("akademik_dataset.csv", index=False)
+

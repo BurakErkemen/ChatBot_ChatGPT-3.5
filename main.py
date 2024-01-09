@@ -20,9 +20,6 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 prompt = st.chat_input("What is up?")
-prompt1 = """If you are given an entry with the word "Announcements" in it, you can look in the [duyurular_dataset.csv](link_to_duyurular_dataset) file and answer that {no such information has been released recently} if the information asked for is not there.
-If you are given the name of an official from the [akademik_dataset.csv](link_to_akademik_dataset) database, you can give his/her fields of study and title information.
-If you are asked a question about a field in the [akademik_dataset.csv](link_to_akademik_dataset) database, you can let them know that you can get help about the lecturer who deals with it."""
 
 prompt3 = """
 Given the dataset about announcements (duyuru_dataset.csv), you can find information about recent announcements. 
